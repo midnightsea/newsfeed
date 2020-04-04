@@ -28,4 +28,4 @@ jobs:
         run: npm install
 
       - name: build and deploy
-        run: npx gatsby build --prefix-paths && npx gh-pages -d public -r https://${{ secrets.ACCESS_TOKEN }}@github.com/midnightsea/newsfeed.git
+        run: npx gatsby build --prefix-paths GATSBY_WELCOME_MESSAGE={{ secrets.TEST }} && npx gh-pages -d public -r https://${{ secrets.ACCESS_TOKEN }}@github.com/midnightsea/newsfeed.git
