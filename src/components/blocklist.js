@@ -1,18 +1,30 @@
 import React from "react";
 
 import Blocks from "./blocks";
+import { connect } from "react-redux";
 
-const BlockList = ({ news }) => {
+function BlockList({ search }) {
   return (
     <div>
-      <Card
-        key={news[i].id}
-        id={news[i].id}
-        name={news[i].name}
-        email={news[i].email}
-      />
+      {search.articles == "init"
+        ? "Please enter Search"
+        : search.articles.map((articles, i) => {
+            return (
+              <Blocks
+                title={articles.title}
+                url={articles.url}
+                urlToImage={articles.urlToImage}
+                source={articles.source.name}
+              />
+            );
+          })}
     </div>
   );
+}
+
+// Connect search state from store to SearchBox component
+const mapStateToProps = ({ search }) => {
+  return { search };
 };
 
-export default BlockList;
+export default connect(mapStateToProps)(BlockList);

@@ -1,12 +1,16 @@
 import React from "react";
 
-const Blocks = ({ name, email, id }) => {
+const Blocks = ({ title, url, urlToImage, source, id }) => {
   return (
-    <div>
-      <img alt="newsBlock" src={``} />
+    <div id={id}>
+      <img src={urlToImage} />
       <div>
-        <h2>{name}</h2>
-        <p>{email}</p>
+        <h2>{title}</h2>
+        <p>
+          <a href={url}>
+            <b>{source}</b>
+          </a>
+        </p>
       </div>
     </div>
   );
