@@ -1,18 +1,29 @@
 import React from "react";
-
 import Blocks from "./blocks";
-
-const BlockList = ({ news }) => {
+import { connect } from "react-redux";
+import CardColumns from "react-bootstrap/CardColumns";
+function BlockList({ search }) {
   return (
-    <div>
-      <Card
-        key={news[i].id}
-        id={news[i].id}
-        name={news[i].name}
-        email={news[i].email}
-      />
-    </div>
+    <CardColumns>
+      {search.articles == "init"
+        ? ""
+        : search.articles.map((articles, i) => {
+            return (
+              <Blocks
+                title={articles.title}
+                url={articles.url}
+                urlToImage={articles.urlToImage}
+                source={articles.source.name}
+              />
+            );
+          })}
+    </CardColumns>
   );
+}
+
+// Connect search state from store to SearchBox component
+const mapStateToProps = ({ search }) => {
+  return { search };
 };
 
-export default BlockList;
+export default connect(mapStateToProps)(BlockList);

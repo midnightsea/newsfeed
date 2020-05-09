@@ -1,37 +1,51 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
+import axios from "axios";
+import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
 
+// Dispatch is auto passed but search was defined in mapStateToProps
 function SearchBox({ search, dispatch }) {
+  // Use state hook to set searchState
   const [searchState, setSearchState] = useState("init");
 
-  const handleSubmit = (evt) => {
+  // Handle submit with api get request and setting redux state
+  // Set await and sync for timing
+  const handleSubmit = async (evt) => {
     evt.preventDefault();
-    dispatch({ type: `INCREMENT`, value: searchState });
-    alert(`Submitting Name ${search}`);
+    let result = await axios.get(
+      `https://newsapi.org/v2/everything?q=${searchState}&apiKey=${process.env.API_KEY}`
+    );
+    let output = await dispatch({ type: `SET`, value: result.data });
+    alert(`Submitting Name ${output} ${search}`);
   };
 
-  // Declare a new state variable, which we'll call "count"
+  // return form for search input
   return (
     <div className="">
-      <p>This is the search state: {searchState}</p>
-      <p>This is the search in store: {search.init}</p>
-      <form onSubmit={handleSubmit}>
-        <label>
-          First name
-          <input
+      <Form onSubmit={handleSubmit}>
+        <Form.Label>
+          Please enter your search here:
+          <Form.Control
             type="search"
             value={searchState}
             onChange={(val) => setSearchState((search = val.target.value))}
           />
-        </label>
-        <button type="submit">Submit</button>
-      </form>
+        </Form.Label>
+        <Button type="submit">Submit</Button>
+      </Form>
     </div>
   );
 }
 
+// Connect search state from store to SearchBox component
 const mapStateToProps = ({ search }) => {
   return { search };
 };
 
 export default connect(mapStateToProps)(SearchBox);
+
+// References
+// https://www.valentinog.com/blog/await-react/
+// https://rangle.io/blog/simplifying-controlled-inputs-with-hooks/
+//

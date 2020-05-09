@@ -1,14 +1,18 @@
 import React from "react";
-
-const Blocks = ({ name, email, id }) => {
+import Card from "react-bootstrap/Card";
+import Button from "react-bootstrap/Button";
+const Blocks = ({ title, url, urlToImage, source, id }) => {
   return (
-    <div>
-      <img alt="newsBlock" src={``} />
-      <div>
-        <h2>{name}</h2>
-        <p>{email}</p>
-      </div>
-    </div>
+    <Card>
+      <Card.Img variant="top" src={urlToImage} />
+      <Card.Body>
+        <Card.Title>{title}</Card.Title>
+        <Card.Text>source: {source}</Card.Text>
+        <Button variant="primary" href={url} target="_blank">
+          Visit
+        </Button>
+      </Card.Body>
+    </Card>
   );
 };
 
