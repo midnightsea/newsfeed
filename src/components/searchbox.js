@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
 import axios from "axios";
+import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
 
 // Dispatch is auto passed but search was defined in mapStateToProps
 function SearchBox({ search, dispatch }) {
@@ -21,18 +23,17 @@ function SearchBox({ search, dispatch }) {
   // return form for search input
   return (
     <div className="">
-      <p>This is the search state: {searchState}</p>
-      <form onSubmit={handleSubmit}>
-        <label>
-          First name
-          <input
+      <Form onSubmit={handleSubmit}>
+        <Form.Label>
+          Please enter your search here:
+          <Form.Control
             type="search"
             value={searchState}
             onChange={(val) => setSearchState((search = val.target.value))}
           />
-        </label>
-        <button type="submit">Submit</button>
-      </form>
+        </Form.Label>
+        <Button type="submit">Submit</Button>
+      </Form>
     </div>
   );
 }

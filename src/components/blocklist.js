@@ -1,13 +1,12 @@
 import React from "react";
-
 import Blocks from "./blocks";
 import { connect } from "react-redux";
-
+import CardColumns from "react-bootstrap/CardColumns";
 function BlockList({ search }) {
   return (
-    <div>
+    <CardColumns>
       {search.articles == "init"
-        ? "Please enter Search"
+        ? ""
         : search.articles.map((articles, i) => {
             return (
               <Blocks
@@ -18,7 +17,7 @@ function BlockList({ search }) {
               />
             );
           })}
-    </div>
+    </CardColumns>
   );
 }
 
