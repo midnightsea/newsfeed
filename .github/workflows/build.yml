@@ -31,4 +31,4 @@ jobs:
         run: npx gatsby build --prefix-paths && npx gh-pages -d public -r https://${{ secrets.ACCESS_TOKEN }}@github.com/midnightsea/newsfeed.git
         env:
           GATSBY_WELCOME_MESSAGE: ${{ secrets.TEST }}
-          API_KEY: ${{ secrets.API_KEY }}
+          API_KEY: test123
