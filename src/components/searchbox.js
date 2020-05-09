@@ -14,7 +14,7 @@ function SearchBox({ search, dispatch }) {
   const handleSubmit = async (evt) => {
     evt.preventDefault();
     let result = await axios.get(
-      `https://newsapi.org/v2/everything?q=${searchState}&apiKey=${process.env.API_KEY}`
+      `https://newsapi.org/v2/everything?q=${searchState}&apiKey=${process.env.GATSBY_API_KEY}`
     );
     let output = await dispatch({ type: `SET`, value: result.data });
     alert(`Submitting Name ${output} ${search}`);
