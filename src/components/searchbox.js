@@ -22,7 +22,7 @@ function SearchBox({ search, dispatch }) {
 
   // return form for search input
   return (
-    <div className="">
+    <div className="text-center">
       <Form onSubmit={handleSubmit}>
         <Form.Label>
           Please enter your search here:

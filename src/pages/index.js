@@ -12,12 +12,16 @@ import NewsContainer from "../containers/newscontainer";
 const IndexPage = () => (
   <Container>
     <Jumbotron>
-      <h1>Hi people</h1>
-      <p>Welcome to your new Gatsby site.</p>
-      <p>Now go build something great.</p>
-      <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}>
-        <p>Hello {`${process.env.GATSBY_WELCOME_MESSAGE}`} </p>
-      </div>
+      <h1 className="text-center">Newsfeed</h1>
+      <p>
+        Welcome to this site! The field below will initiate a search and pull
+        back articles from various news sources matching your input.{" "}
+      </p>
+      <p>
+        This web page is built using Gatsbyjs framework, Redux for state
+        management and bootsrap for styling.
+      </p>
+      <p>FYI, I love {`${process.env.GATSBY_WELCOME_MESSAGE}`} </p>
     </Jumbotron>
     {/* <Link to="/page-2/">Go to page 2</Link> */}
     <NewsContainer />
